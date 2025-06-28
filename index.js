@@ -4,6 +4,10 @@
 let randNum;
 let humanScore = 0;
 let computerScore = 0;
+const playButton = document.getElementById("playButton");
+const rWeapon = document.getElementById("rWeapon");
+const pWeapon = document.getElementById("pWeapon");
+const sWeapon = document.getElementById("sWeapon");
  
 //Records the selection of the players (rock/paper/scissors)
 let humanSelection;
@@ -14,10 +18,10 @@ let computerSelection;
 //GETS computer choice of ROCK/PAPER/SCISSORS
 function getComputerChoice() {
     
-    randNum = Math.random();
-    if (randNum <= 0.33) {
+    randNum = Math.floor(Math.random() * 10);
+    if (randNum <= 3) {
         computerSelection = 'ROCK';
-    } else if (randNum > 0.33 && randNum <= 0.66) {
+    } else if (randNum > 3 && randNum <= 6) {
         computerSelection = 'PAPER';
     } else {
         computerSelection = 'SCISSORS';
@@ -29,7 +33,7 @@ function getComputerChoice() {
 //GETS user choice of ROCK/PAPER/SCISSORS
 function getHumanChoice() {
 
-    let humanString = prompt('Enter ROCK, PAPER or SCISSORS: ');
+    let weapon = document.get;
     humanSelection = humanString.toUpperCase();
     return humanSelection;
 };
@@ -38,33 +42,33 @@ function getHumanChoice() {
 function playRound(humanChoice, computerChoice) {
     if (humanChoice == 'ROCK' && computerChoice == 'SCISSORS') {
         humanScore++;
-        console.log('You win. Rock beats Scissors.');
+        
     } else if (humanChoice == 'ROCK' && computerChoice == 'PAPER') {
         computerScore++;
-        console.log('You lose. Paper beats Rock.');
+      
     } else if (humanChoice == 'PAPER' && computerChoice == 'ROCK') {
         humanScore++;
-        console.log('You win. Paper beats Rock.');
+      
     } else if (humanChoice == 'PAPER' && computerChoice == 'SCISSORS') {
         computerScore++;
-        console.log('You lose. Scissors beats Paper.');
+        
     } else if (humanChoice == 'SCISSORS' && computerChoice == 'PAPER') {
         humanScore++;
-        console.log('You win. Scissors beats Paper.');
+        
     } else if (humanChoice == 'SCISSORS' && computerChoice == 'ROCK') {
         computerScore++;
-        console.log('You lose. Rock beats Scissors.');
+        
     };
     
 };
 
 //Plays the game for 5 rounds
 function playGame() {
-    for (let i = 0; i <= 5; i++) {
-        getComputerChoice();
-        getHumanChoice();
-        playRound(humanSelection, computerSelection);
-    }
+    // for (let i = 0; i <= 5; i++) {
+    //     getComputerChoice();
+    //     getHumanChoice();
+    //     playRound(humanSelection, computerSelection);
+    // }
     if (humanScore > computerScore) {
         console.log('Congratulations! You win ' + humanScore +' to ' + computerScore + '!');
     } else if (humanScore < computerScore) {
@@ -74,6 +78,7 @@ function playGame() {
     console.log('Thanks for playing!');
 };
 
+document.addEventListener("click")
 
 //Execute Game
 playGame()
