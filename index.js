@@ -5,10 +5,8 @@ let randNum;
 let humanScore = 0;
 let computerScore = 0;
 const playButton = document.getElementById("playButton");
-const rWeapon = document.getElementById("rWeapon");
-const pWeapon = document.getElementById("pWeapon");
-const sWeapon = document.getElementById("sWeapon");
- 
+let readyWeapon;
+const weapons = document.querySelectorAll("#weaponSelect");
 //Records the selection of the players (rock/paper/scissors)
 let humanSelection;
 let computerSelection; 
@@ -31,12 +29,7 @@ function getComputerChoice() {
 };
 
 //GETS user choice of ROCK/PAPER/SCISSORS
-function getHumanChoice() {
 
-    let weapon = document.get;
-    humanSelection = humanString.toUpperCase();
-    return humanSelection;
-};
 
 //PLAY one round
 function playRound(humanChoice, computerChoice) {
@@ -78,7 +71,20 @@ function playGame() {
     console.log('Thanks for playing!');
 };
 
-document.addEventListener("click")
+//Listeners for clicking on weapons and play buttons
+document.querySelectorAll("#weaponSelect").forEach(e => {
+
+    e.addEventListener("click", event => {
+       let humanChoice = event.target.id;
+        console.log(humanChoice);
+        
+        readyWeapon = document.getElementById(humanChoice);
+        readyWeapon.style.minWidth = "80%";
+        readyWeapon.style.minHeight = "200px";
+        readyWeapon.style.filter = "drop-shadow(20px 20px 60px green)";
+
+    });
+});
 
 //Execute Game
-playGame()
+// playGame()
