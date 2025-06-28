@@ -2,11 +2,44 @@
 
 //Global scope variables
 let randNum;
-let humanScore = 0;
-let computerScore = 0;
+let humanScore = 3;
+let computerScore = 3;
 const playButton = document.getElementById("playButton");
 let readyWeapon;
-const weapons = document.querySelectorAll("#weaponSelect");
+let humanChoice;
+const weaponList = document.querySelectorAll("#weaponSelect");
+const playerDisplay = document.getElementById("playerDisplay");
+const computerDisplay = document.getElementById("computerDisplay");
+
+//Health Bars
+playerHealth = document.getElementById("playerHealth");
+computerHealth = document.getElementById("npcHealth");
+
+//Creates BATTLE IMAGES for user and npc
+const rockLeft = document.createElement("img");
+rockLeft.setAttribute("src", "./img/rockUser.png");
+rockLeft.setAttribute("class", "battleHand");
+
+const rockRight = document.createElement("img");
+rockRight.setAttribute("src", "./img/rockEnemy.png");
+rockRight.setAttribute("class", "battleHand");
+
+const paperLeft = document.createElement("img");
+paperLeft.setAttribute("src", "./img/paperUser.png");
+paperLeft.setAttribute("class", "battleHand");
+
+const paperRight = document.createElement("img");
+paperRight.setAttribute("src", "./img/paperEnemy.png");
+paperRight.setAttribute("class", "battleHand");
+
+const scissorsLeft = document.createElement("img");
+scissorsLeft.setAttribute("src", "./img/scissorsUser.png");
+scissorsLeft.setAttribute("class", "battleHand");
+
+const scissorsRight = document.createElement("img");
+scissorsRight.setAttribute("src", "./img/scissorsEnemy.png");
+scissorsRight.setAttribute("class", "battleHand");
+
 //Records the selection of the players (rock/paper/scissors)
 let humanSelection;
 let computerSelection; 
@@ -24,7 +57,6 @@ function getComputerChoice() {
     } else {
         computerSelection = 'SCISSORS';
     };
-    return computerSelection;
     
 };
 
@@ -33,58 +65,145 @@ function getComputerChoice() {
 
 //PLAY one round
 function playRound(humanChoice, computerChoice) {
+    console.log(humanChoice, computerChoice);
     if (humanChoice == 'ROCK' && computerChoice == 'SCISSORS') {
-        humanScore++;
-        
+        playerDisplay.append(rockLeft);
+        computerDisplay.append(scissorsRight);
+        --computerScore;
+        manageHealth();
+
     } else if (humanChoice == 'ROCK' && computerChoice == 'PAPER') {
-        computerScore++;
-      
+        playerDisplay.append(rockLeft);
+        computerDisplay.append(paperRight);
+        --humanScore;
+        manageHealth();
+
     } else if (humanChoice == 'PAPER' && computerChoice == 'ROCK') {
-        humanScore++;
+        playerDisplay.append(paperLeft);
+        computerDisplay.append(rockRight);
+        --computerScore;
+        manageHealth();
       
     } else if (humanChoice == 'PAPER' && computerChoice == 'SCISSORS') {
-        computerScore++;
-        
+        playerDisplay.append(paperLeft);
+        computerDisplay.append(scissorsRight);
+        --humanScore;
+        manageHealth();
+
     } else if (humanChoice == 'SCISSORS' && computerChoice == 'PAPER') {
-        humanScore++;
+        playerDisplay.append(scissorsLeft);
+        computerDisplay.append(paperRight);
+        --computerScore;
+        manageHealth();
         
     } else if (humanChoice == 'SCISSORS' && computerChoice == 'ROCK') {
-        computerScore++;
+        playerDisplay.append(scissorsLeft);
+        computerDisplay.append(rockRight);
+        --humanScore;
+        manageHealth();
         
-    };
+    } else if (humanChoice == computerChoice) {
+        switch (humanChoice) {
+            case "ROCK":
+                playerDisplay.append(rockLeft);
+                computerDisplay.append(rockRight);
+                break;
+            case "SCISSORS":
+                playerDisplay.append(scissorsLeft);
+                computerDisplay.append(scissorsRight);
+                break;
+            case "PAPER":
+                playerDisplay.append(paperLeft);
+                computerDisplay.append(paperRight);
+                break;
+        };
+    }
     
 };
 
-//Plays the game for 5 rounds
-function playGame() {
-    // for (let i = 0; i <= 5; i++) {
-    //     getComputerChoice();
-    //     getHumanChoice();
-    //     playRound(humanSelection, computerSelection);
-    // }
-    if (humanScore > computerScore) {
-        console.log('Congratulations! You win ' + humanScore +' to ' + computerScore + '!');
-    } else if (humanScore < computerScore) {
-        console.log('Sorry, you lose ' + computerScore +' to ' + humanScore + '!');
-    };
 
-    console.log('Thanks for playing!');
+function resetWeapon(remains) {
+        switch (remains) {
+            case "ROCK":
+                document.getElementById("PAPER").classList.remove("selected");
+                document.getElementById("SCISSORS").classList.remove("selected");
+                break;
+            case "PAPER":
+                document.getElementById("ROCK").classList.remove("selected");
+                document.getElementById("SCISSORS").classList.remove("selected");
+                break;
+            case "SCISSORS":
+                document.getElementById("PAPER").classList.remove("selected");
+                document.getElementById("ROCK").classList.remove("selected");
+                break; 
+        };
 };
 
+function selectWeapon(item) {
+    readyWeapon = document.getElementById(item);
+        readyWeapon.classList.add("selected");
+        humanSelection = item;
+        
+};
+
+function manageHealth() {
+    if (computerScore === 2) {
+        computerHealth.setAttribute("src", "./img/bluePill2.png");
+    } else if (computerScore === 1) {
+        computerHealth.setAttribute("src", "./img/bluePill3.png");
+    } else if (computerScore === 0) {
+        computerHealth.setAttribute("src", "./img/bluePill4.png");
+        gameOver();
+    } else if (humanScore === 2) {
+        playerHealth.setAttribute("src", "./img/redPill2.png");
+    } else if (humanScore === 1) {
+        playerHealth.setAttribute("src", "./img/redPill3.png");
+    } else if (humanScore === 0) {
+        playerHealth.setAttribute("src", "./img/redPill4.png");
+        gameOver();
+    };
+ 
+
+};
+
+function gameOver() {
+
+    // if (humanScore === 0) {
+    //     document.getElementById(humanSelection).classList.add("losingHand");
+    // } else {
+    //     computerDisplay.children.classList.add("losingHand");
+    // }
+
+}
 //Listeners for clicking on weapons and play buttons
-document.querySelectorAll("#weaponSelect").forEach(e => {
+
+weaponList.forEach(e => {
 
     e.addEventListener("click", event => {
-       let humanChoice = event.target.id;
+        humanChoice = event.target.id;
         console.log(humanChoice);
+        resetWeapon(humanChoice);
+        selectWeapon(humanChoice);
         
-        readyWeapon = document.getElementById(humanChoice);
-        readyWeapon.style.minWidth = "80%";
-        readyWeapon.style.minHeight = "200px";
-        readyWeapon.style.filter = "drop-shadow(20px 20px 60px green)";
-
-    });
+    }); 
+    
 });
+
+playButton.addEventListener("click", () => {
+    //Clears battlefield
+    playerDisplay.replaceChildren();
+    computerDisplay.replaceChildren();
+    resetWeapon();
+
+    //Checks if weapon has been selected so game doesn't break
+    if (humanSelection != undefined) {
+        getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    } else {
+        alert("No Weapon Chosen!");
+    }
+    
+})
 
 //Execute Game
 // playGame()
