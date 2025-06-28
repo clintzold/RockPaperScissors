@@ -172,4 +172,5 @@ body {
     font-size: 90px;
     animation-name: fadeIn;
     animation-duration: 2s;
+    font-weight: bold;
 }

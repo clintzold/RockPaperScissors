@@ -165,13 +165,15 @@ function manageHealth(a, b) {
     } else if (b === 0) {
         computerHealth.setAttribute("src", "./img/bluePill4.png");
         gameOver();
-    } else if (a === 3) {
+    }; 
+    
+    if (a == 3) {
         playerHealth.setAttribute("src", "./img/redPill.png");
-    } else if (a === 2) {
+    } else if (a == 2) {
         playerHealth.setAttribute("src", "./img/redPill2.png");
-    } else if (a === 1) {
+    } else if (a == 1) {
         playerHealth.setAttribute("src", "./img/redPill3.png");
-    } else if (a === 0) {
+    } else if (a == 0) {
         playerHealth.setAttribute("src", "./img/redPill4.png");
         gameOver();
     };
@@ -181,9 +183,10 @@ function manageHealth(a, b) {
 
 function gameOver() {
     humanChoice = "GAMEOVER";
-    resetWeapon(humanChoice);
-    playerDisplay.replaceChildren();
-    computerDisplay.replaceChildren();
+    humanSelection = "GAMEOVER";
+    // resetWeapon(humanChoice);
+    // playerDisplay.replaceChildren();
+    // computerDisplay.replaceChildren();
     playButton.replaceWith(resetButton);
     if (humanScore === 0) {
         
@@ -218,17 +221,16 @@ playButton.addEventListener("click", () => {
     
 
     //Checks if weapon has been selected so game doesn't break
-    if (humanSelection != undefined) {
+    if (humanSelection != undefined || humanSelection === "GAMEOVER") {
         getComputerChoice();
         playRound(humanSelection, computerSelection);
-    } else {
-        alert("No Weapon Chosen!");
-    }
+    } 
     
 });
 
 resetButton.addEventListener("click", () => {
     //Reset Gameplay values
+    resetWeapon(humanChoice);
     resetButton.replaceWith(playButton);
     displayResult.replaceChildren();
     playerDisplay.replaceChildren();
