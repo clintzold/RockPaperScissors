@@ -5,11 +5,15 @@ let randNum;
 let humanScore = 3;
 let computerScore = 3;
 const playButton = document.getElementById("playButton");
+const resetButton = document.createElement("button");
+resetButton.setAttribute("class", "resetButton");
+resetButton.textContent = "Play Again";
 let readyWeapon;
 let humanChoice;
 const weaponList = document.querySelectorAll("#weaponSelect");
 const playerDisplay = document.getElementById("playerDisplay");
 const computerDisplay = document.getElementById("computerDisplay");
+const displayResult = document.getElementById("displayResult");
 
 //Health Bars
 playerHealth = document.getElementById("playerHealth");
@@ -66,43 +70,43 @@ function getComputerChoice() {
 //PLAY one round
 function playRound(humanChoice, computerChoice) {
     console.log(humanChoice, computerChoice);
-    if (humanChoice == 'ROCK' && computerChoice == 'SCISSORS') {
+    if (humanChoice === 'ROCK' && computerChoice === 'SCISSORS') {
         playerDisplay.append(rockLeft);
         computerDisplay.append(scissorsRight);
         --computerScore;
-        manageHealth();
+        manageHealth(humanScore, computerScore);
 
-    } else if (humanChoice == 'ROCK' && computerChoice == 'PAPER') {
+    } else if (humanChoice === 'ROCK' && computerChoice === 'PAPER') {
         playerDisplay.append(rockLeft);
         computerDisplay.append(paperRight);
         --humanScore;
-        manageHealth();
+        manageHealth(humanScore, computerScore);
 
-    } else if (humanChoice == 'PAPER' && computerChoice == 'ROCK') {
+    } else if (humanChoice === 'PAPER' && computerChoice === 'ROCK') {
         playerDisplay.append(paperLeft);
         computerDisplay.append(rockRight);
         --computerScore;
-        manageHealth();
+        manageHealth(humanScore, computerScore);
       
-    } else if (humanChoice == 'PAPER' && computerChoice == 'SCISSORS') {
+    } else if (humanChoice === 'PAPER' && computerChoice === 'SCISSORS') {
         playerDisplay.append(paperLeft);
         computerDisplay.append(scissorsRight);
         --humanScore;
-        manageHealth();
+        manageHealth(humanScore, computerScore);
 
-    } else if (humanChoice == 'SCISSORS' && computerChoice == 'PAPER') {
+    } else if (humanChoice === 'SCISSORS' && computerChoice === 'PAPER') {
         playerDisplay.append(scissorsLeft);
         computerDisplay.append(paperRight);
         --computerScore;
-        manageHealth();
+        manageHealth(humanScore, computerScore);
         
-    } else if (humanChoice == 'SCISSORS' && computerChoice == 'ROCK') {
+    } else if (humanChoice === 'SCISSORS' && computerChoice === 'ROCK') {
         playerDisplay.append(scissorsLeft);
         computerDisplay.append(rockRight);
         --humanScore;
-        manageHealth();
+        manageHealth(humanScore, computerScore);
         
-    } else if (humanChoice == computerChoice) {
+    } else if (humanChoice === computerChoice) {
         switch (humanChoice) {
             case "ROCK":
                 playerDisplay.append(rockLeft);
@@ -135,7 +139,12 @@ function resetWeapon(remains) {
             case "SCISSORS":
                 document.getElementById("PAPER").classList.remove("selected");
                 document.getElementById("ROCK").classList.remove("selected");
-                break; 
+                break;
+            case "GAMEOVER":
+                document.getElementById("PAPER").classList.remove("selected");
+                document.getElementById("ROCK").classList.remove("selected");
+                document.getElementById("SCISSORS").classList.remove("selected");
+                break;
         };
 };
 
@@ -146,19 +155,23 @@ function selectWeapon(item) {
         
 };
 
-function manageHealth() {
-    if (computerScore === 2) {
+function manageHealth(a, b) {
+    if (b === 3) {
+        computerHealth.setAttribute("src", "./img/bluePill.png");
+    } else if (b === 2) {
         computerHealth.setAttribute("src", "./img/bluePill2.png");
-    } else if (computerScore === 1) {
+    } else if (b === 1) {
         computerHealth.setAttribute("src", "./img/bluePill3.png");
-    } else if (computerScore === 0) {
+    } else if (b === 0) {
         computerHealth.setAttribute("src", "./img/bluePill4.png");
         gameOver();
-    } else if (humanScore === 2) {
+    } else if (a === 3) {
+        playerHealth.setAttribute("src", "./img/redPill.png");
+    } else if (a === 2) {
         playerHealth.setAttribute("src", "./img/redPill2.png");
-    } else if (humanScore === 1) {
+    } else if (a === 1) {
         playerHealth.setAttribute("src", "./img/redPill3.png");
-    } else if (humanScore === 0) {
+    } else if (a === 0) {
         playerHealth.setAttribute("src", "./img/redPill4.png");
         gameOver();
     };
@@ -167,14 +180,23 @@ function manageHealth() {
 };
 
 function gameOver() {
+    humanChoice = "GAMEOVER";
+    resetWeapon(humanChoice);
+    playerDisplay.replaceChildren();
+    computerDisplay.replaceChildren();
+    playButton.replaceWith(resetButton);
+    if (humanScore === 0) {
+        
+        displayResult.setAttribute("class", "gameOver");
+        displayResult.textContent = "YOU LOSE";
+        
+    } else {
+        displayResult.setAttribute("class", "gameOver");
+        displayResult.textContent = "YOU WIN";
+       
+    };
 
-    // if (humanScore === 0) {
-    //     document.getElementById(humanSelection).classList.add("losingHand");
-    // } else {
-    //     computerDisplay.children.classList.add("losingHand");
-    // }
-
-}
+};
 //Listeners for clicking on weapons and play buttons
 
 weaponList.forEach(e => {
@@ -193,7 +215,7 @@ playButton.addEventListener("click", () => {
     //Clears battlefield
     playerDisplay.replaceChildren();
     computerDisplay.replaceChildren();
-    resetWeapon();
+    
 
     //Checks if weapon has been selected so game doesn't break
     if (humanSelection != undefined) {
@@ -203,7 +225,19 @@ playButton.addEventListener("click", () => {
         alert("No Weapon Chosen!");
     }
     
-})
+});
+
+resetButton.addEventListener("click", () => {
+    //Reset Gameplay values
+    resetButton.replaceWith(playButton);
+    displayResult.replaceChildren();
+    playerDisplay.replaceChildren();
+    computerDisplay.replaceChildren();
+    humanScore = 3;
+    computerScore = 3;
+    manageHealth(humanScore, computerScore);
+    
+});
 
 //Execute Game
 // playGame()

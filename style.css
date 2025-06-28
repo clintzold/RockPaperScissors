@@ -105,6 +105,28 @@ body {
     font-family: "Audiowide";
 }
 
+.resetButton {
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    min-height: 50px;
+    border-radius: 12px;
+    background-color: rgba(0, 51, 255, 0.584);
+    font-family: "Audiowide";
+}
+
+.resetButton:hover {
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    min-height: 50px;
+    border-radius: 12px;
+    background-color: rgba(0, 51, 255, 0.31);
+    font-family: "Audiowide";
+}
+
 #playButton:hover {
         background-color: rgba(255, 0, 0, 0.308);
 }
@@ -136,9 +158,18 @@ body {
 .battleHand {
      width: auto;
     height: 250px;
+    animation-name: fadeIn;
+    animation-duration: 1s;
 }
 
+@keyframes fadeIn {
+    from {opacity: 0;}
 
-.losingHand {
-    filter: drop-shadow(20px 20px 60px red);
+    to {opacity: 1;};
+}
+.gameOver {
+    font-family: "Audiowide";
+    font-size: 90px;
+    animation-name: fadeIn;
+    animation-duration: 2s;
 }
