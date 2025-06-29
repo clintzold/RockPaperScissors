@@ -64,8 +64,6 @@ function getComputerChoice() {
     
 };
 
-//GETS user choice of ROCK/PAPER/SCISSORS
-
 
 //PLAY one round
 function playRound(humanChoice, computerChoice) {
@@ -184,9 +182,7 @@ function manageHealth(a, b) {
 function gameOver() {
     humanChoice = "GAMEOVER";
     humanSelection = "GAMEOVER";
-    // resetWeapon(humanChoice);
-    // playerDisplay.replaceChildren();
-    // computerDisplay.replaceChildren();
+
     playButton.replaceWith(resetButton);
     if (humanScore === 0) {
         
@@ -242,7 +238,3 @@ resetButton.addEventListener("click", () => {
     manageHealth(humanScore, computerScore);
     
 });
-const audio = new Audio();
-audio.play();
-//Execute Game
-// playGame()
