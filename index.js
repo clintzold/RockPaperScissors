@@ -69,7 +69,7 @@ function getComputerChoice() {
 
 //PLAY one round
 function playRound(humanChoice, computerChoice) {
-    console.log(humanChoice, computerChoice);
+    
     if (humanChoice === 'ROCK' && computerChoice === 'SCISSORS') {
         playerDisplay.append(rockLeft);
         computerDisplay.append(scissorsRight);
@@ -206,7 +206,7 @@ weaponList.forEach(e => {
 
         e.addEventListener("click", event => {
         humanChoice = event.target.id;
-        console.log(humanChoice);
+        
         resetWeapon(humanChoice);
         selectWeapon(humanChoice);
         
@@ -230,7 +230,7 @@ playButton.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", () => {
-    
+
     //Reset Gameplay values
     resetWeapon(humanChoice);
     resetButton.replaceWith(playButton);
