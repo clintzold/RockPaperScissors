@@ -149,7 +149,7 @@ function resetWeapon(remains) {
 };
 
 function selectWeapon(item) {
-    readyWeapon = document.getElementById(item);
+        readyWeapon = document.getElementById(item);
         readyWeapon.classList.add("selected");
         humanSelection = item;
         
@@ -204,7 +204,7 @@ function gameOver() {
 
 weaponList.forEach(e => {
 
-    e.addEventListener("click", event => {
+        e.addEventListener("click", event => {
         humanChoice = event.target.id;
         
         resetWeapon(humanChoice);
@@ -214,6 +214,7 @@ weaponList.forEach(e => {
     
 });
 
+//Clears battlefield of hands
 playButton.addEventListener("click", () => {
     //Clears battlefield
     playerDisplay.replaceChildren();
@@ -229,10 +230,7 @@ playButton.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", () => {
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of a478988 (Tidy up unused code and commenting)
     //Reset Gameplay values
     resetWeapon(humanChoice);
     resetButton.replaceWith(playButton);
