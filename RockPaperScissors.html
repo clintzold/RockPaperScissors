@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--GET font "Audiowide"-->
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>Rock, Paper, Scissors</title>
+        <script type="text/javascript" src="./index.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="header">
+            <h1 id="headTextOne">Rock</h1>
+            <h1 id="headTextTwo">Paper</h1>
+            <h1 id="headTextThree">Scissors</h1>
+        </div>
+        <div id="interface">
+            <div id="menu">
+                <button id=playButton>Attack</button>
+                <h2>Choose Your Weapon</h2>
+                <div id="weaponSelect">
+                    <img id="ROCK" class="weapon" src="./img/rockUser.png">
+                    <img id="PAPER" class="weapon" src="./img/paperUser.png">
+                    <img id="SCISSORS" class="weapon" src="./img/scissorsUser.png">
+                </div>
+            </div>
+            <div id="playBoard">
+                <h2>Battlefield</h2>
+                <div id="battleZone">
+                    <div id="playerDisplay"></div>
+    
+                    <div id="computerDisplay"></div>
+                </div>
+                <div id="result">
+                    <div>
+                        <img id="playerHealth" src="./img/redPill.png">
+                    </div>
+                    <div id="displayResult"></div>
+                    <div>
+                        <img id="npcHealth" src="./img/bluePill.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

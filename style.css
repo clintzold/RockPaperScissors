@@ -2,6 +2,9 @@ body {
     display: flex;
     flex-direction: column;
     background-image: url("./img/matrix.png");
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 #header {
@@ -10,13 +13,18 @@ body {
     align-items: center;
     color: white;
     font-family: "Audiowide";
-    font-size: 20px;
+    font-size: 3vw;
     
+}
+
+#header h1 {
+    margin: 0;
 }
 
 #interface {
     margin: 0 50px 0 50px;
-    min-height: 850px;
+    width: 90vw;
+    min-height: 70vh;
     background-color: rgba(0, 0, 0, 0.7);
     border: 5px solid rgba(128, 128, 128, 0.503);
     border-radius: 20px;
@@ -38,7 +46,11 @@ body {
     border-radius: 20px;
     background-color: rgba(169, 169, 169, 0.5);
     justify-content: space-around;
+    align-items: center;
+}
 
+#menu h2 {
+    font-size: 2vw;
 }
 
 #playBoard {
@@ -53,20 +65,29 @@ body {
     background-color: rgba(169, 169, 169, 0.5);
     justify-content: space-around;
 }
+
+
 #playBoard h2 {
     margin-top: 0;
+    font-size: 4vw;
+   
 }
 
 #battleZone {
     display: flex;
     width: 100%;
     height: 70%;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 10%;
+    border: 5px dotted red;
     
 }
 
+#computerDisplay {
+    display: flex;
+    justify-content: flex-end;
+}
 #result {
     display: flex;
     height: 25%;
@@ -80,51 +101,47 @@ body {
 
     display: flex;
     flex-direction: column;
-    min-height: 70%;
+    height: 70%;
     justify-content: space-around;
+    align-items: center;
 }
 
 .weapon {
-     width: 60%;
-    height: 150px;
+     width: 12dvh;
+    height: auto;
 }
 
 .weapon:hover {
-    min-width: 80%;
-    min-height: 200px;
+    width: 25dvh;
+    height: auto;
    
 }
 
 #playButton {
-    margin-left: auto;
-    margin-right: auto;
-    width: 200px;
-    min-height: 50px;
+    margin-top: 5%;
+    width: 70%;
+    height: 10%;
     border-radius: 12px;
     background-color: rgba(255, 0, 0, 0.508);
     font-family: "Audiowide";
+    font-size: 1vw;
 }
 
 .resetButton {
 
-    margin-left: auto;
-    margin-right: auto;
-    width: 200px;
-    min-height: 50px;
+   margin-top: 5%;
+    width: 70%;
+    height: 10%;
     border-radius: 12px;
+    font-size: 1vw;
     background-color: rgba(0, 51, 255, 0.584);
     font-family: "Audiowide";
 }
 
 .resetButton:hover {
 
-    margin-left: auto;
-    margin-right: auto;
-    width: 200px;
-    min-height: 50px;
-    border-radius: 12px;
     background-color: rgba(0, 51, 255, 0.31);
-    font-family: "Audiowide";
+    
 }
 
 #playButton:hover {
@@ -135,29 +152,35 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 #result img {
     opacity: 0.8;
 }
 
-#playerHealth img {
-    filter: drop-shadow(20px 20px 60px red);
+#playerHealth {
+    width: 15vw;
+    height: auto;
+    flex: 0 1;
 }
 
-#computerHealth img {
-    filter: drop-shadow(20px 20px 60px blue);
+#npcHealth {
+    width: 15vw;
+    height: auto;
+    flex: 0 1;
+  
 }
 
 .selected {
-    width: 80%;
-    height: 200px;
-    filter: drop-shadow(20px 20px 60px green);
+    width: 25dvh;
+    height: auto;
+    filter: drop-shadow(20px 20px 60px rgb(146, 0, 0));
 }
 
 .battleHand {
-     width: auto;
-    height: 250px;
+     width: 27dvh;
+    height: auto;
     animation-name: fadeIn;
     animation-duration: 1s;
 }
@@ -169,8 +192,13 @@ body {
 }
 .gameOver {
     font-family: "Audiowide";
-    font-size: 90px;
+    font-size: 3vw;
     animation-name: fadeIn;
     animation-duration: 2s;
     font-weight: bold;
 }
+
+#displayResult {
+    text-align: center;
+}
+

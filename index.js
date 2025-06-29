@@ -240,6 +240,7 @@ resetButton.addEventListener("click", () => {
     manageHealth(humanScore, computerScore);
     
 });
-
+const audio = new Audio();
+audio.play();
 //Execute Game
 // playGame()
