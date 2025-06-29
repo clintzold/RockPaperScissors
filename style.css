@@ -3,22 +3,22 @@ body {
     flex-direction: column;
     background-image: url("./img/matrix.png");
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: flex-start;
+    height: 98vh;
 }
 
 #header {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     color: white;
     font-family: "Audiowide";
-    font-size: 3vw;
-    
+    font-size: 1vw;
+    margin: 2%;
 }
 
 #header h1 {
-    margin: 0;
+    margin: 5px;
 }
 
 #interface {
