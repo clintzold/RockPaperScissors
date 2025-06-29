@@ -105,16 +105,11 @@ body {
     align-items: center;
     gap: 10%;
     margin-bottom: 10%;
-    
 }
 
 .weapon {
-    display: flex;
-    max-width: 15dvh;
-    min-width: 0;
-    height: 5dvw;
-    
-    flex: 0 1;
+     width: 15dvh;
+    height: auto;
 }
 
 .weapon:hover {
@@ -179,20 +174,16 @@ body {
 }
 
 .selected {
-    max-width: 15dvw;
-   
-    height: 15dvh;
+    width: 25dvh;
+    height: auto;
     filter: drop-shadow(20px 20px 60px rgb(146, 0, 0));
-    flex: 0 1;
 }
 
 .battleHand {
-    display: flex;
-    max-width: 20dvw;
-    min-width: 1dvh;
+     width: 30dvh;
+    height: auto;
     animation-name: fadeIn;
     animation-duration: 1s;
-    flex: 1;
 }
 
 @keyframes fadeIn {
