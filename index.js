@@ -4,10 +4,12 @@
 let randNum;
 let humanScore = 3;
 let computerScore = 3;
+
 const playButton = document.getElementById("playButton");
 const resetButton = document.createElement("button");
 resetButton.setAttribute("class", "resetButton");
 resetButton.textContent = "Play Again";
+
 let readyWeapon;
 let humanChoice;
 const weaponList = document.querySelectorAll("#weaponSelect");
@@ -44,12 +46,12 @@ const scissorsRight = document.createElement("img");
 scissorsRight.setAttribute("src", "./img/scissorsEnemy.png");
 scissorsRight.setAttribute("class", "battleHand");
 
-//Records the selection of the players (rock/paper/scissors)
+//STORES the selection of the players (rock/paper/scissors)
 let humanSelection;
 let computerSelection; 
 
 
-//Random number generator
+//RANDOM NUMBER GENERATOR
 //GETS computer choice of ROCK/PAPER/SCISSORS
 function getComputerChoice() {
     
@@ -63,8 +65,6 @@ function getComputerChoice() {
     };
     
 };
-
-//GETS user choice of ROCK/PAPER/SCISSORS
 
 
 //PLAY one round
@@ -107,6 +107,7 @@ function playRound(humanChoice, computerChoice) {
         manageHealth(humanScore, computerScore);
         
     } else if (humanChoice === computerChoice) {
+
         switch (humanChoice) {
             case "ROCK":
                 playerDisplay.append(rockLeft);
@@ -127,6 +128,7 @@ function playRound(humanChoice, computerChoice) {
 
 
 function resetWeapon(remains) {
+
         switch (remains) {
             case "ROCK":
                 document.getElementById("PAPER").classList.remove("selected");
@@ -149,13 +151,15 @@ function resetWeapon(remains) {
 };
 
 function selectWeapon(item) {
-    readyWeapon = document.getElementById(item);
+
+        readyWeapon = document.getElementById(item);
         readyWeapon.classList.add("selected");
         humanSelection = item;
         
 };
 
 function manageHealth(a, b) {
+
     if (b === 3) {
         computerHealth.setAttribute("src", "./img/bluePill.png");
     } else if (b === 2) {
@@ -177,16 +181,12 @@ function manageHealth(a, b) {
         playerHealth.setAttribute("src", "./img/redPill4.png");
         gameOver();
     };
- 
-
 };
 
 function gameOver() {
     humanChoice = "GAMEOVER";
     humanSelection = "GAMEOVER";
-    // resetWeapon(humanChoice);
-    // playerDisplay.replaceChildren();
-    // computerDisplay.replaceChildren();
+    
     playButton.replaceWith(resetButton);
     if (humanScore === 0) {
         
@@ -200,11 +200,11 @@ function gameOver() {
     };
 
 };
-//Listeners for clicking on weapons and play buttons
 
+//LISTENERS for clicking on weapons and play buttons
 weaponList.forEach(e => {
 
-    e.addEventListener("click", event => {
+        e.addEventListener("click", event => {
         humanChoice = event.target.id;
         console.log(humanChoice);
         resetWeapon(humanChoice);
@@ -214,8 +214,9 @@ weaponList.forEach(e => {
     
 });
 
+//Clears battlefield of hands
 playButton.addEventListener("click", () => {
-    //Clears battlefield
+    
     playerDisplay.replaceChildren();
     computerDisplay.replaceChildren();
     
@@ -229,6 +230,7 @@ playButton.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", () => {
+    
     //Reset Gameplay values
     resetWeapon(humanChoice);
     resetButton.replaceWith(playButton);
@@ -240,7 +242,3 @@ resetButton.addEventListener("click", () => {
     manageHealth(humanScore, computerScore);
     
 });
-const audio = new Audio();
-audio.play();
-//Execute Game
-// playGame()
