@@ -45,7 +45,7 @@ body {
     width: 25%;
     border-radius: 20px;
     background-color: rgba(169, 169, 169, 0.5);
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -63,7 +63,7 @@ body {
     border-radius: 20px;
     padding: 20px;
     background-color: rgba(169, 169, 169, 0.5);
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 
@@ -76,10 +76,11 @@ body {
 #battleZone {
     display: flex;
     width: 100%;
+    height: 70%;
     justify-content: center;
     align-items: center;
-    gap: 30%;
-    margin-bottom: 5%;
+    gap: 10%;
+    
     
 }
 
@@ -103,12 +104,10 @@ body {
     height: 70%;
     justify-content: space-around;
     align-items: center;
-    gap: 10%;
-    margin-bottom: 10%;
 }
 
 .weapon {
-     width: 15dvh;
+     width: 12dvh;
     height: auto;
 }
 
@@ -180,7 +179,7 @@ body {
 }
 
 .battleHand {
-     width: 30dvh;
+     width: 27dvh;
     height: auto;
     animation-name: fadeIn;
     animation-duration: 1s;
