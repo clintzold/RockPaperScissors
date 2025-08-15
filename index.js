@@ -4,6 +4,7 @@
 let randNum;
 let humanScore = 3;
 let computerScore = 3;
+const audio = document.getElementById("audio");
 const playButton = document.getElementById("playButton");
 const resetButton = document.createElement("button");
 resetButton.setAttribute("class", "resetButton");
@@ -238,3 +239,4 @@ resetButton.addEventListener("click", () => {
     manageHealth(humanScore, computerScore);
     
 });
+audio.play();
